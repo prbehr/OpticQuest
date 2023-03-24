@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cywpgeobj2hmi"]
+
+[ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://mirror.tscn" id="2_swr0k"]
+[ext_resource type="PackedScene" uid="uid://5dt5c6wv23d7" path="res://player_ray.tscn" id="3_dd6ab"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RayCast2D2" parent="." instance=ExtResource("3_dd6ab")]
+position = Vector2(219, 543)
+
+[node name="Area2D" parent="." instance=ExtResource("2_swr0k")]
+position = Vector2(733, 492)
+rotation = 0.434052
+can_set_color = true
+color_to_set = Color(1, 0, 1, 1)
+
+[node name="Area2D2" parent="." instance=ExtResource("2_swr0k")]
+position = Vector2(774, 265)
+
+[node name="Area2D3" parent="." instance=ExtResource("2_swr0k")]
+position = Vector2(440, 129)
+rotation = 0.683896
+
+[node name="Area2D4" parent="." instance=ExtResource("2_swr0k")]
+position = Vector2(178, 511)
+can_set_color = true
+color_to_set = Color(0, 1, 0, 1)
