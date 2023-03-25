@@ -20,13 +20,17 @@ func update_line_pos():
 		# Set the line to end at the raycast collision point
 		var collision_point = self.get_collision_point()
 		$Line2D.set_point_position(1,to_local(collision_point))
-		var ref_direction = Vector2(self.target_position.normalized()).bounce(self.get_collision_normal())
-		if(is_reflected==false):
-			is_reflected=true
-			self.create_reflection(self.get_collision_point(),ref_direction)
-			print(rad_to_deg(target_position.normalized().angle_to(get_collision_normal())))
-		if(is_reflected==true):
-			self.set_reflection_direction(collision_point,ref_direction.normalized()*3000)
+		var collider_obj = self.get_collider()
+		if(collider_obj.is_in_group("reflectors")):
+			var ref_direction = Vector2(self.target_position.normalized()).bounce(self.get_collision_normal())
+			if(is_reflected==false):
+				is_reflected=true
+				self.create_reflection(self.get_collision_point(),ref_direction)
+				print(rad_to_deg(target_position.normalized().angle_to(get_collision_normal())))
+			if(is_reflected==true):
+				self.set_reflection_direction(collision_point,ref_direction.normalized()*3000)
+		elif(collider_obj.is_in_group("detectors")):
+			collider_obj.check_light_color($Line2D)
 		
 	else:
 		if(is_reflected==true):

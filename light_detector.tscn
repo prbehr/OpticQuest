@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://qgw8i6orvg0t"]
+
+[ext_resource type="Script" path="res://light_detector.gd" id="1_ljnha"]
+[ext_resource type="FontFile" uid="uid://b4n0fuak3jis" path="res://font/BOD_B.TTF" id="2_ypowm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nswgw"]
+size = Vector2(20, 76)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_hgyl8"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_ljnha")
+accepted_color = Color(1, 0, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nswgw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20, 76)
+texture = SubResource("CanvasTexture_hgyl8")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = 25.0
+offset_right = 47.0
+offset_bottom = 48.0
+rotation = -1.5708
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ypowm")
+theme_override_font_sizes/font_size = 6
+text = "I AM A DETECTOR"
