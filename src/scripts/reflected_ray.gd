@@ -1,4 +1,4 @@
-extends "res://standard_ray.gd"
+extends "res://src/scripts/standard_ray.gd"
 
 
 # Called when the node enters the scene tree for the first time.

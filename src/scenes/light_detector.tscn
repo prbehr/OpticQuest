@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://qgw8i6orvg0t"]
 
-[ext_resource type="Script" path="res://light_detector.gd" id="1_ljnha"]
+[ext_resource type="Script" path="res://src/scripts/light_detector.gd" id="1_63xh7"]
 [ext_resource type="FontFile" uid="uid://b4n0fuak3jis" path="res://font/BOD_B.TTF" id="2_ypowm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nswgw"]
@@ -9,8 +9,7 @@ size = Vector2(20, 76)
 [sub_resource type="CanvasTexture" id="CanvasTexture_hgyl8"]
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_ljnha")
-accepted_color = Color(1, 0, 1, 1)
+script = ExtResource("1_63xh7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nswgw")

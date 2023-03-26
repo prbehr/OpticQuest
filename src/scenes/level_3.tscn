@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1nqi8virnbcm"]
+
+[ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="1_5fp5j"]
+[ext_resource type="PackedScene" uid="uid://5dt5c6wv23d7" path="res://src/scenes/player_ray.tscn" id="2_yux68"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="LevelMaster" parent="." instance=ExtResource("1_5fp5j")]
+
+[node name="Ray1" parent="." instance=ExtResource("2_yux68")]
+position = Vector2(-31, 291)
+target_position = Vector2(3000, 0)

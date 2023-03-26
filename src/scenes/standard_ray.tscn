@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://cifu4ciypcyac"]
 
-[ext_resource type="Script" path="res://standard_ray.gd" id="1_a2sd4"]
+[ext_resource type="Script" path="res://src/scripts/standard_ray.gd" id="1_m1gtx"]
 
 [node name="RayCast2D" type="RayCast2D"]
 target_position = Vector2(3000, 0)
 collide_with_areas = true
-script = ExtResource("1_a2sd4")
+script = ExtResource("1_m1gtx")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)

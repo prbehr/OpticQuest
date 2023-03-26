@@ -1,8 +1,9 @@
 extends Area2D
 
-@export var ray_scene: PackedScene = load("res://reflected_ray.tscn")
+@export var ray_scene: PackedScene = load("res://src/scenes/reflected_ray.tscn")
 @export var can_set_color: bool = false
 @export var color_to_set: Color
+@export var draggable: bool = true # Set to false if mirror CANNOT be dragged
 var can_move: bool = false
 var check_for_drag: bool = false
 
@@ -26,7 +27,7 @@ func _unhandled_input(event):
 			can_move = false
 
 func _process(delta):
-	if(can_move):
+	if(draggable and can_move):
 		self.global_position = get_global_mouse_position()
 
 func set_line_color(line: Line2D):

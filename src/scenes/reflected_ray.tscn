@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://i2ittawasfm5"]
 
-[ext_resource type="Script" path="res://reflected_ray.gd" id="1_fbuxr"]
+[ext_resource type="Script" path="res://src/scripts/reflected_ray.gd" id="1_pvvlh"]
 
 [node name="RayCast2D" type="RayCast2D"]
 collide_with_areas = true
-script = ExtResource("1_fbuxr")
+script = ExtResource("1_pvvlh")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)

@@ -1,4 +1,4 @@
-extends "res://standard_ray.gd"
+extends "res://src/scripts/standard_ray.gd"
 
 @export var length = 3000
 @export var base_speed = 0.25
