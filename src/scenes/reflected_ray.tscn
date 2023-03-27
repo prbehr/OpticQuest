@@ -8,4 +8,4 @@ script = ExtResource("1_pvvlh")
 
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)
-width = 2.0
+width = 3.0

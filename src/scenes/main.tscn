@@ -26,5 +26,4 @@ offset_bottom = 23.0
 text = "GOAL: REFLECT THE RAY INTO THE DETECTOR"
 
 [node name="RayCast2D" parent="." instance=ExtResource("3_dd6ab")]
-modulate = Color(2, 2, 2, 1)
 position = Vector2(-75, 345)
