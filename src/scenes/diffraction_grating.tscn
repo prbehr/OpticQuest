@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bco0681qlcxdl"]
+
+[ext_resource type="Script" path="res://src/scripts/diffraction_grating.gd" id="1_lc8ce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv81u"]
+size = Vector2(20, 106)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cwf0l"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_lc8ce")
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color(0, 1, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hv81u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1.3113e-06)
+scale = Vector2(20, 106)
+texture = SubResource("CanvasTexture_cwf0l")

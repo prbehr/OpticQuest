@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://58ebroeko7lt"]
+
+[ext_resource type="PackedScene" uid="uid://bco0681qlcxdl" path="res://src/scenes/diffraction_grating.tscn" id="1_3usyu"]
+[ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="2_5pbmp"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" parent="." instance=ExtResource("1_3usyu")]
+position = Vector2(605, 162)
+rotation = -0.349066
+
+[node name="RayCast2D" parent="." instance=ExtResource("2_5pbmp")]
+position = Vector2(-20, 372)
