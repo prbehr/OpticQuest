@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://b1kkcypdye47s"]
 
 [ext_resource type="PackedScene" uid="uid://5dt5c6wv23d7" path="res://src/scenes/player_ray.tscn" id="1_fhubi"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="2_3pnsn"]
@@ -16,4 +16,3 @@ rotation = 0.785398
 [node name="detector" parent="." instance=ExtResource("2_3pnsn")]
 position = Vector2(576, 77)
 rotation = 1.5708
-accepted_color = Color(1, 1, 1, 1)

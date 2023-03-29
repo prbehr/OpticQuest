@@ -38,5 +38,5 @@ func _process(delta):
 func solve_grating_equation(in_angle,color):
 	### Need to put [if(color==white): solve all 3 wavelengths] somewhere
 	var out_angle = asin((order*color_dict[color])*(groove_density*1E-6)-sin(in_angle))
-	print("Color: "+str(color)+" Out angle: "+str(out_angle))
+	#print("Color: "+str(color)+" Out angle: "+str(rad_to_deg(out_angle))) #debugging
 	return out_angle

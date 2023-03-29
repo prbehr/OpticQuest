@@ -7,7 +7,7 @@
 
 [node name="Area2D" parent="." instance=ExtResource("1_3usyu")]
 position = Vector2(605, 162)
-rotation = -0.349066
+rotation = 0.349066
 
 [node name="RayCast2D" parent="." instance=ExtResource("2_5pbmp")]
 position = Vector2(-20, 372)

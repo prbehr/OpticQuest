@@ -46,12 +46,19 @@ func update_line_pos():
 			
 			# Calculate the incoming angle with dot product to normal. If it's > 90 then use 180-90
 			var in_angle = acos(target_position.normalized().dot(get_collision_normal()))
+			# Get the angle from target position to normal
+			#	if positive, rotate negative. If negative, rotate positive
+			var angle_to = target_position.angle_to(get_collision_normal())
 			if(in_angle > PI/2):
 				in_angle = PI-in_angle
 			print(rad_to_deg(in_angle)) # Working
 			for temp_color in diffraction_directions:
 				var out_angle = collider_obj.solve_grating_equation(in_angle,temp_color)
-				diffraction_directions[temp_color] = self.get_collision_normal().rotated(out_angle)
+				if(angle_to < 0):
+					diffraction_directions[temp_color] = self.get_collision_normal().rotated(out_angle)
+				if(angle_to > 0):
+					diffraction_directions[temp_color] = self.get_collision_normal().rotated(-out_angle)
+				# figure out which way to rotate it--it should be in the same direction as a bounce
 			if(is_diffracted==false):
 				is_diffracted=true
 				for temp_color in diffraction_directions:
@@ -59,7 +66,6 @@ func update_line_pos():
 			if(is_diffracted==true):
 				for i in range(1,get_child_count()):
 					var temp_color = get_child(i).get_line_color()
-					print(temp_color)
 					set_reflection_direction(i,collision_point,diffraction_directions[temp_color])
 		elif(collider_obj.is_in_group("detectors")):
 			is_reflected = false
