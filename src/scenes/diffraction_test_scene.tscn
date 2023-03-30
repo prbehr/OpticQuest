@@ -1,13 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://58ebroeko7lt"]
+[gd_scene load_steps=5 format=3 uid="uid://58ebroeko7lt"]
 
 [ext_resource type="PackedScene" uid="uid://bco0681qlcxdl" path="res://src/scenes/diffraction_grating.tscn" id="1_3usyu"]
 [ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="2_5pbmp"]
+[ext_resource type="PackedScene" uid="uid://i2ittawasfm5" path="res://src/scenes/reflected_ray.tscn" id="3_rs1ef"]
+[ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://src/scenes/mirror.tscn" id="4_6jjfi"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Area2D" parent="." instance=ExtResource("1_3usyu")]
-position = Vector2(605, 162)
-rotation = 0.349066
+position = Vector2(620, 330)
+rotation = 0.0872665
 
 [node name="RayCast2D" parent="." instance=ExtResource("2_5pbmp")]
-position = Vector2(-20, 372)
+position = Vector2(1044, 399)
+target_position = Vector2(-3000, 0)
+ray_scene = ExtResource("3_rs1ef")
+
+[node name="Area2D2" parent="." instance=ExtResource("4_6jjfi")]
+position = Vector2(571, 564)
+rotation = 1.22173
+
+[node name="Area2D3" parent="." instance=ExtResource("4_6jjfi")]
+position = Vector2(170, 574)
+rotation = 1.22173
+
+[node name="Area2D4" parent="." instance=ExtResource("4_6jjfi")]
+position = Vector2(302, 572)
+rotation = 1.22173

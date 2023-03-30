@@ -2,8 +2,8 @@ extends RayCast2D
 
 @export var ray_scene: PackedScene = load("res://src/scenes/reflected_ray.tscn")
 var is_reflected = false # bool to control whether or not to make a new reflected ray
-var is_diffracted = false
-var update_diffraction_directions = true
+var is_diffracted = false # bool to control whether or not to make a new diffracted ray
+var update_diffraction_directions = true 
 var has_hit_detector: bool = false
 var current_detector
 var diffraction_directions = {Color("BLUE"):1.0,Color("GREEN"):1.0,Color("RED"):1.0}
@@ -21,7 +21,7 @@ func get_line_color():
 	return self.get_child(0).get_default_color()
 
 func intiate_line():
-	$Line2D.set_point_position(1,self.target_position) #Set the line to follow the RayCast2D
+	$Line2D.set_point_position(1,self.target_position*2000) #Set the line to follow the RayCast2D
 
 func update_line_pos():
 	if(self.is_colliding()):
@@ -37,38 +37,34 @@ func update_line_pos():
 				self.create_reflection(self.get_collision_point(),ref_direction)
 				print(rad_to_deg(target_position.normalized().angle_to(get_collision_normal())))
 			if(is_reflected==true):
-				self.set_reflection_direction(1,collision_point,ref_direction.normalized()*3000)
+				self.set_reflection_direction(1,collision_point,ref_direction.normalized()*2000)
+				
 		elif(collider_obj.is_in_group("diffractors")):
+			is_reflected = true
 			# Calculate diffraction directions
 			# If is_diffracted is true then the rays have already been created and we only need to update
 			#	their position
 			# Otherwise, create the 3 new rays in the appropriate directions
-			
-			# Calculate the incoming angle with dot product to normal. If it's > 90 then use 180-90
-			var in_angle = acos(target_position.normalized().dot(get_collision_normal()))
-			# Get the angle from target position to normal
-			#	if positive, rotate negative. If negative, rotate positive
-			var angle_to = target_position.angle_to(get_collision_normal())
-			if(in_angle > PI/2):
-				in_angle = PI-in_angle
-			print(rad_to_deg(in_angle)) # Working
+			var in_angle = target_position.angle_to(get_collision_normal())
+			var i_hat = -target_position.normalized() # opposite of incoming ray
+			var angle_to_normal = i_hat.angle_to(get_collision_normal()) # Angle from incoming ray to normal
+			# This should be the direction we rotate
 			for temp_color in diffraction_directions:
 				var out_angle = collider_obj.solve_grating_equation(in_angle,temp_color)
-				if(angle_to < 0):
-					diffraction_directions[temp_color] = self.get_collision_normal().rotated(out_angle)
-				if(angle_to > 0):
-					diffraction_directions[temp_color] = self.get_collision_normal().rotated(-out_angle)
-				# figure out which way to rotate it--it should be in the same direction as a bounce
+				diffraction_directions[temp_color] = i_hat.rotated((angle_to_normal+out_angle)*angle_to_normal/abs(angle_to_normal))
 			if(is_diffracted==false):
 				is_diffracted=true
 				for temp_color in diffraction_directions:
-					create_reflection(collision_point,diffraction_directions[temp_color]*3000,temp_color)
+					create_reflection(collision_point,diffraction_directions[temp_color],temp_color)
+				print(diffraction_directions)
 			if(is_diffracted==true):
 				for i in range(1,get_child_count()):
 					var temp_color = get_child(i).get_line_color()
-					set_reflection_direction(i,collision_point,diffraction_directions[temp_color])
+					set_reflection_direction(i,collision_point,diffraction_directions[temp_color]*2000)
+					
 		elif(collider_obj.is_in_group("detectors")):
 			is_reflected = false
+			is_diffracted = false
 			if(has_hit_detector == false): # This will only run on the first time a ray hits a detector
 				current_detector = collider_obj
 				has_hit_detector = true

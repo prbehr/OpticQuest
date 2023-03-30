@@ -1,12 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1nqi8virnbcm"]
+[gd_scene load_steps=5 format=3 uid="uid://d1nqi8virnbcm"]
 
-[ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="1_5fp5j"]
-[ext_resource type="PackedScene" uid="uid://5dt5c6wv23d7" path="res://src/scenes/player_ray.tscn" id="2_yux68"]
+[ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="1_blgrf"]
+[ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="2_ttyid"]
+[ext_resource type="PackedScene" uid="uid://bco0681qlcxdl" path="res://src/scenes/diffraction_grating.tscn" id="3_bq7xk"]
+[ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="4_jywbg"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="LevelMaster" parent="." instance=ExtResource("1_5fp5j")]
+[node name="LevelMaster" parent="." instance=ExtResource("1_blgrf")]
 
-[node name="Ray1" parent="." instance=ExtResource("2_yux68")]
-position = Vector2(-31, 291)
-target_position = Vector2(3000, 0)
+[node name="BlueDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
+position = Vector2(72, 45)
+rotation = 0.785398
+accepted_color = Color(0, 0, 1, 1)
+
+[node name="GreenDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
+position = Vector2(226, 38)
+rotation = 0.785398
+accepted_color = Color(0, 1, 0, 1)
+
+[node name="RedDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
+position = Vector2(423, 44)
+rotation = 0.785398
+accepted_color = Color(1, 0, 0, 1)
+
+[node name="StandardRay" parent="." instance=ExtResource("2_ttyid")]
+position = Vector2(-31, 535)
+
+[node name="DiffractionGrating" parent="." instance=ExtResource("3_bq7xk")]
+position = Vector2(947, 423)
+rotation = 0.0872665
+
+[node name="Label" type="Label" parent="."]
+offset_left = 789.0
+offset_right = 1152.0
+offset_bottom = 26.0
+text = "GOAL: DIFFRACT A RAY INTO EACH DETECTOR"
