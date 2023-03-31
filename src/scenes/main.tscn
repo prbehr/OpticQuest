@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c04yfvm5k27bw"]
 
 [ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://src/scenes/mirror.tscn" id="2_swr0k"]
-[ext_resource type="PackedScene" uid="uid://5dt5c6wv23d7" path="res://src/scenes/player_ray.tscn" id="3_dd6ab"]
 [ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="3_r2gmi"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="3_ynfah"]
 [ext_resource type="PackedScene" uid="uid://bfup6udyn4k00" path="res://src/scenes/level_2.tscn" id="4_7eavu"]
+[ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="5_bwalp"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -20,10 +20,10 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "GOAL: REFLECT THE RAY INTO THE DETECTOR"
 
-[node name="RayCast2D" parent="." instance=ExtResource("3_dd6ab")]
-position = Vector2(-75, 345)
-
 [node name="mirror1" parent="." instance=ExtResource("2_swr0k")]
 position = Vector2(914, 499)
 rotation = 0.785398
 color_to_set = Color(0, 1, 0, 1)
+
+[node name="StandardRay" parent="." instance=ExtResource("5_bwalp")]
+position = Vector2(-19, 425)

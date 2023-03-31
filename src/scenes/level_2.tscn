@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bfup6udyn4k00"]
 
 [ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="1_pj8tq"]
-[ext_resource type="PackedScene" uid="uid://5dt5c6wv23d7" path="res://src/scenes/player_ray.tscn" id="1_tdt6v"]
 [ext_resource type="PackedScene" uid="uid://d1nqi8virnbcm" path="res://src/scenes/level_3.tscn" id="2_gbm13"]
 [ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://src/scenes/mirror.tscn" id="2_o4240"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="3_fujd8"]
+[ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="5_cpq0e"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,14 +15,6 @@ next_scene = ExtResource("2_gbm13")
 position = Vector2(10, 199)
 accepted_color = Color(1, 0, 0, 1)
 rays_required = 2
-
-[node name="Ray1" parent="." instance=ExtResource("1_tdt6v")]
-position = Vector2(-47, 599)
-target_position = Vector2(3000, 0)
-
-[node name="Ray2" parent="." instance=ExtResource("1_tdt6v")]
-position = Vector2(-48, 580)
-target_position = Vector2(3000, 0)
 
 [node name="Mirror1" parent="." instance=ExtResource("2_o4240")]
 position = Vector2(587, 521)
@@ -39,3 +31,9 @@ draggable = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "GOAL: REFLECT TWO RAYS INTO THE DETECTOR"
+
+[node name="StandardRay1" parent="." instance=ExtResource("5_cpq0e")]
+position = Vector2(-25, 432)
+
+[node name="StandardRay2" parent="." instance=ExtResource("5_cpq0e")]
+position = Vector2(-24, 459)

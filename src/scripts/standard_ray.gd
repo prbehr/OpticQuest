@@ -12,7 +12,7 @@ var diffraction_directions = {Color("BLUE"):1.0,Color("GREEN"):1.0,Color("RED"):
 func _ready():
 	collide_with_areas = true # Mirrors are Area2D nodes
 	print("I'm here at position: "+str(self.position)) # Debugging
-	
+			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	update_line_pos()
@@ -35,7 +35,6 @@ func update_line_pos():
 			if(is_reflected==false):
 				is_reflected=true
 				self.create_reflection(self.get_collision_point(),ref_direction)
-				print(rad_to_deg(target_position.normalized().angle_to(get_collision_normal())))
 			if(is_reflected==true):
 				self.set_reflection_direction(1,collision_point,ref_direction.normalized()*2000)
 				
