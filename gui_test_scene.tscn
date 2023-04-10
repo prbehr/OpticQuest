@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c732s15j4ydtx"]
+
+[ext_resource type="PackedScene" uid="uid://cvao17j2wy75" path="res://src/scenes/GUI.tscn" id="1_0l32v"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="VSplitContainer" parent="." instance=ExtResource("1_0l32v")]

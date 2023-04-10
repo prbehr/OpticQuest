@@ -21,6 +21,12 @@ func _process(delta):
 func update_status():
 	var num_rays = 0
 	for ray in current_rays:
+		print(ray)
+		# If a ray is deleted before moving off of a detector, its reference in the array becomes <null>
+		#	if that happens it must be deleted or get_default_color() causes error
+		if(ray == null):
+			current_rays.pop_at(current_rays.find(ray))
+			continue
 		if(ray.get_default_color() == accepted_color):
 			num_rays += 1
 		if(num_rays >= rays_required):

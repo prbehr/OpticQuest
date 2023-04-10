@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://4gjh5yptb23j"]
+[gd_scene load_steps=7 format=3 uid="uid://4gjh5yptb23j"]
 
 [ext_resource type="Script" path="res://level_master.gd" id="1_3tkk0"]
+[ext_resource type="PackedScene" uid="uid://cvao17j2wy75" path="res://src/scenes/GUI.tscn" id="2_blya5"]
 
 [sub_resource type="Animation" id="Animation_ne5er"]
 length = 0.001
@@ -104,6 +105,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 color = Color(0, 0, 0, 0)
+
+[node name="VSplitContainer" parent="CanvasLayer" instance=ExtResource("2_blya5")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

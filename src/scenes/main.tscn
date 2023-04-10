@@ -8,22 +8,24 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="LevelMaster" parent="." instance=ExtResource("3_r2gmi")]
-next_scene = ExtResource("4_7eavu")
-
-[node name="Detector1" parent="LevelMaster" instance=ExtResource("3_ynfah")]
-position = Vector2(578, 183)
-rotation = 1.5708
-
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 800.0
+offset_top = 1.0
+offset_right = 1148.0
+offset_bottom = 27.0
 text = "GOAL: REFLECT THE RAY INTO THE DETECTOR"
 
 [node name="mirror1" parent="." instance=ExtResource("2_swr0k")]
-position = Vector2(914, 499)
+position = Vector2(1026, 396)
 rotation = 0.785398
 color_to_set = Color(0, 1, 0, 1)
 
-[node name="StandardRay" parent="." instance=ExtResource("5_bwalp")]
-position = Vector2(-19, 425)
+[node name="RayCast2D" parent="." instance=ExtResource("5_bwalp")]
+position = Vector2(221, 500)
+
+[node name="LevelMaster" parent="." instance=ExtResource("3_r2gmi")]
+next_scene = ExtResource("4_7eavu")
+
+[node name="WhiteDetector" parent="LevelMaster" instance=ExtResource("3_ynfah")]
+position = Vector2(740, 132)
+rotation = 1.5708

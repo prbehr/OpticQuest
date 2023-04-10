@@ -10,25 +10,25 @@
 [node name="LevelMaster" parent="." instance=ExtResource("1_blgrf")]
 
 [node name="BlueDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
-position = Vector2(72, 45)
+position = Vector2(274, 42)
 rotation = 0.785398
 accepted_color = Color(0, 0, 1, 1)
 
 [node name="GreenDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
-position = Vector2(226, 38)
+position = Vector2(428, 35)
 rotation = 0.785398
 accepted_color = Color(0, 1, 0, 1)
 
 [node name="RedDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
-position = Vector2(423, 44)
+position = Vector2(625, 41)
 rotation = 0.785398
 accepted_color = Color(1, 0, 0, 1)
 
 [node name="StandardRay" parent="." instance=ExtResource("2_ttyid")]
-position = Vector2(-31, 535)
+position = Vector2(230, 578)
 
 [node name="DiffractionGrating" parent="." instance=ExtResource("3_bq7xk")]
-position = Vector2(947, 423)
+position = Vector2(587, 493)
 rotation = 0.0872665
 
 [node name="Label" type="Label" parent="."]
