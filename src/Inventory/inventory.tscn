@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfqlt25htq42a"]
+
+[ext_resource type="Script" path="res://src/Inventory/inventory.gd" id="1_1w82y"]
+
+[node name="Inventory" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+offset_right = 140.0
+offset_bottom = 203.0
+script = ExtResource("1_1w82y")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 2
