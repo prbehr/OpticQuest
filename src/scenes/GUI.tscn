@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvao17j2wy75"]
+[gd_scene load_steps=5 format=3 uid="uid://cvao17j2wy75"]
 
 [ext_resource type="Texture2D" uid="uid://b1p8g10tvupue" path="res://src/Textures/ray_texture.png" id="1_nx2k7"]
 [ext_resource type="PackedScene" uid="uid://c5c65s82w6dok" path="res://src/scenes/description_label.tscn" id="1_ygpf5"]
 [ext_resource type="PackedScene" uid="uid://cfqlt25htq42a" path="res://src/Inventory/inventory.tscn" id="3_j17sy"]
+[ext_resource type="PackedScene" uid="uid://bjhceremqgj82" path="res://src/Inventory/slot.tscn" id="4_j54aj"]
 
-[node name="VSplitContainer" type="VSplitContainer"]
+[node name="GUI" type="VSplitContainer"]
 offset_right = 208.0
 offset_bottom = 648.0
 size_flags_vertical = 3
@@ -43,4 +44,10 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Inventory" parent="." instance=ExtResource("3_j17sy")]
+layout_mode = 2
+
+[node name="GrabbedSlot" parent="." instance=ExtResource("4_j54aj")]
+visible = false
+modulate = Color(1, 1, 1, 0.521569)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2

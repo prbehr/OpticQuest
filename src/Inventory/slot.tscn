@@ -19,3 +19,5 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

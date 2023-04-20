@@ -1,13 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1nqi8virnbcm"]
+[gd_scene load_steps=14 format=3 uid="uid://d1nqi8virnbcm"]
 
 [ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="1_blgrf"]
+[ext_resource type="Script" path="res://src/Inventory/inventory_data.gd" id="2_blw4k"]
 [ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="2_ttyid"]
 [ext_resource type="PackedScene" uid="uid://bco0681qlcxdl" path="res://src/scenes/diffraction_grating.tscn" id="3_bq7xk"]
+[ext_resource type="Resource" uid="uid://cjt0vplo1dcxi" path="res://src/Item/mirror.tres" id="3_uj7tr"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="4_jywbg"]
+[ext_resource type="Script" path="res://src/Inventory/slot_data.gd" id="4_mhn8q"]
+[ext_resource type="Resource" uid="uid://beqbi1vr3i5ye" path="res://src/Item/grating.tres" id="5_2t7tt"]
+
+[sub_resource type="Resource" id="Resource_37810"]
+script = ExtResource("4_mhn8q")
+item_data = ExtResource("3_uj7tr")
+
+[sub_resource type="Resource" id="Resource_u74jf"]
+script = ExtResource("4_mhn8q")
+item_data = ExtResource("3_uj7tr")
+
+[sub_resource type="Resource" id="Resource_2our2"]
+script = ExtResource("4_mhn8q")
+item_data = ExtResource("5_2t7tt")
+
+[sub_resource type="Resource" id="Resource_dyh6g"]
+script = ExtResource("4_mhn8q")
+item_data = ExtResource("5_2t7tt")
+
+[sub_resource type="Resource" id="Resource_iswkj"]
+script = ExtResource("2_blw4k")
+slot_data_array = Array[ExtResource("4_mhn8q")]([SubResource("Resource_37810"), SubResource("Resource_u74jf"), SubResource("Resource_2our2"), SubResource("Resource_dyh6g")])
 
 [node name="Node2D" type="Node2D"]
 
 [node name="LevelMaster" parent="." instance=ExtResource("1_blgrf")]
+inventory_data = SubResource("Resource_iswkj")
 
 [node name="BlueDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
 position = Vector2(274, 42)
