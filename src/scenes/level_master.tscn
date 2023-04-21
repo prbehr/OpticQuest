@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://4gjh5yptb23j"]
+[gd_scene load_steps=9 format=3 uid="uid://brjmydti4sblm"]
 
-[ext_resource type="Script" path="res://level_master.gd" id="1_3tkk0"]
+[ext_resource type="Script" path="res://src/scripts/level_master.gd" id="1_0k3kr"]
 [ext_resource type="Resource" uid="uid://iv1kcuejkfem" path="res://src/Inventory/test_inventory.tres" id="2_2qlio"]
 [ext_resource type="PackedScene" uid="uid://cvao17j2wy75" path="res://src/scenes/GUI.tscn" id="2_blya5"]
 
@@ -86,7 +86,7 @@ _data = {
 size = Vector2(220, 671)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_3tkk0")
+script = ExtResource("1_0k3kr")
 inventory_data = ExtResource("2_2qlio")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

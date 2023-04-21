@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c2fuotlbm507l"]
+
+[node name="InteractPanel" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="RotationLabel" type="Label" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "ROTATION"
+horizontal_alignment = 1
+
+[node name="RotationSlider" type="HSlider" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+max_value = 3.14
+step = 0.01
+
+[node name="ReturnButton" type="Button" parent="OptionsContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "RETURN TO INVENTORY"

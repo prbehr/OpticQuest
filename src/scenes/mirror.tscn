@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnwwehp5cfbw6"]
+[gd_scene load_steps=5 format=3 uid="uid://cnwwehp5cfbw6"]
 
 [ext_resource type="Script" path="res://src/scripts/mirror.gd" id="1_quunf"]
+[ext_resource type="PackedScene" uid="uid://c2fuotlbm507l" path="res://src/scenes/interact_panel.tscn" id="2_amcj7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly0kb"]
 size = Vector2(20, 63)
@@ -16,3 +17,6 @@ shape = SubResource("RectangleShape2D_ly0kb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(20, 64)
 texture = SubResource("CanvasTexture_asmbx")
+
+[node name="InteractPanel" parent="." instance=ExtResource("2_amcj7")]
+visible = false

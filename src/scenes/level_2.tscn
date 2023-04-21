@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bfup6udyn4k00"]
+[gd_scene load_steps=15 format=3 uid="uid://bfup6udyn4k00"]
 
-[ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="1_pj8tq"]
+[ext_resource type="PackedScene" uid="uid://brjmydti4sblm" path="res://src/scenes/level_master.tscn" id="1_pj8tq"]
 [ext_resource type="PackedScene" uid="uid://d1nqi8virnbcm" path="res://src/scenes/level_3.tscn" id="2_gbm13"]
 [ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://src/scenes/mirror.tscn" id="2_o4240"]
 [ext_resource type="Script" path="res://src/Inventory/inventory_data.gd" id="3_683nf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://src/Inventory/slot_data.gd" id="5_r1y5h"]
 [ext_resource type="Resource" uid="uid://beqbi1vr3i5ye" path="res://src/Item/grating.tres" id="6_15bnb"]
 [ext_resource type="PackedScene" uid="uid://i2ittawasfm5" path="res://src/scenes/reflected_ray.tscn" id="6_qsna5"]
+[ext_resource type="PackedScene" uid="uid://drbmdiw3ldexu" path="res://src/scenes/placeable_area.tscn" id="11_6rvkk"]
 
 [sub_resource type="Resource" id="Resource_5xqvt"]
 script = ExtResource("5_r1y5h")
@@ -34,16 +35,22 @@ position = Vector2(242, 195)
 accepted_color = Color(1, 0, 0, 1)
 rays_required = 2
 
+[node name="PlaceableArea1" parent="LevelMaster" instance=ExtResource("11_6rvkk")]
+offset_left = 897.0
+offset_top = 293.0
+offset_right = 897.0
+offset_bottom = 293.0
+
 [node name="Mirror1" parent="." instance=ExtResource("2_o4240")]
-position = Vector2(587, 521)
+position = Vector2(710, 447)
 rotation = 0.785398
 
 [node name="Mirror2" parent="." instance=ExtResource("2_o4240")]
 position = Vector2(443, 185)
 rotation = -0.785398
+draggable = false
 can_set_color = true
 color_to_set = Color(1, 0, 0, 1)
-draggable = false
 
 [node name="Label" type="Label" parent="."]
 offset_left = 217.0
