@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://beqbi1vr3i5ye"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://beqbi1vr3i5ye"]
 
 [ext_resource type="Script" path="res://src/Item/item_data.gd" id="1_paoqn"]
+[ext_resource type="PackedScene" uid="uid://bco0681qlcxdl" path="res://src/scenes/diffraction_grating.tscn" id="1_s7n0a"]
 [ext_resource type="Texture2D" uid="uid://ckwja1i3itid2" path="res://src/Textures/grating_icon.png" id="2_egsac"]
 
 [resource]
@@ -8,3 +9,4 @@ script = ExtResource("1_paoqn")
 name = "Diffraction Grating"
 description = "Diffracts light!"
 texture = ExtResource("2_egsac")
+item_scene = ExtResource("1_s7n0a")

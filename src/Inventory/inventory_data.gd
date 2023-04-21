@@ -37,13 +37,12 @@ func drop_slot_data(grabbed_slot_data: SlotData,index: int):
 	else:
 		return null
 		
-func return_optic(object_to_return):
+func return_optic(object_to_return,slot: SlotData):
 	print("Returning %s to inventory"%[object_to_return])
 	for slot_data in slot_data_array:
 		if(!slot_data):
-			var new_slot_data = SlotData.new()
-			new_slot_data.item_data = object_to_return.item_data
-			slot_data = new_slot_data
-			# If the slot is null, put the object in that slot
+			var slot_index = slot_data_array.find(slot_data)
+			slot_data_array[slot_index] = slot
 			inventory_updated.emit(self)
 			object_to_return.queue_free()
+			return

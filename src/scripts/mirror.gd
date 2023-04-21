@@ -3,15 +3,15 @@ extends Area2D
 @export var ray_scene: PackedScene = load("res://src/scenes/reflected_ray.tscn")
 @export var draggable: bool = true # Set to false if mirror CANNOT be dragged
 @export var can_move: bool = false
-@export var can_rotate = false
-@export var can_interact = false
+@export var can_rotate: bool = false
+@export var can_interact: bool = false
 @export var can_set_color: bool = false
 @export var color_to_set: Color
 @onready var rotation_slider = $InteractPanel/OptionsContainer/RotationSlider
 @onready var return_button = $InteractPanel/OptionsContainer/ReturnButton
 var area_placed_in: PlaceableArea
 
-signal return_to_inventory(mirror: Object)
+signal return_to_inventory(mirror: Object, area: PlaceableArea)
 
 func _ready():
 	add_to_group("reflectors")
@@ -43,8 +43,7 @@ func toggle_interact_panel(object):
 	$InteractPanel.visible = !$InteractPanel.visible
 	
 func return_self_to_inventory():
-	print("Returning %s to inventory"%[self])
-	return_to_inventory.emit(self)
+	return_to_inventory.emit(self,area_placed_in)
 	pass
 
 func _unhandled_input(event):

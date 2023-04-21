@@ -9,6 +9,8 @@ extends Node2D
 var num_detectors: int = 0
 var grabbed_slot_data: SlotData
 
+signal update_placeable_areas
+
 func _ready():
 	for node in get_children():
 		if(node.is_in_group("detectors")):
@@ -55,7 +57,7 @@ func drop_grabbed_slot(area: PlaceableArea):
 		item_to_place.return_to_inventory.connect(return_optic_to_inventory)
 		item_to_place.global_position = area.global_position + Vector2(20,20)
 		item_to_place.area_placed_in = area
-		area.item_data = grabbed_slot_data.item_data
+		area.stored_slot = grabbed_slot_data
 		area.visible = false
 		add_child(item_to_place)
 		
@@ -64,8 +66,11 @@ func drop_grabbed_slot(area: PlaceableArea):
 	else:
 		print("No grabbed slot")
 		
-func return_optic_to_inventory(optic):
-	inventory_data.return_optic(optic)
+func return_optic_to_inventory(optic: Object,area: PlaceableArea):
+	var slot_in_area = area.stored_slot
+	area.stored_slot = null
+	inventory_data.return_optic(optic,slot_in_area)
+	update_placeable_areas.emit()
 	pass
 	
 func check_detector_status():

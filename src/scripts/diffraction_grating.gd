@@ -6,34 +6,59 @@ extends Area2D
 @export var order: int = 1
 @export var groove_density: float = 1000 # mm^-1
 
-var can_move: bool = false
-var check_for_drag: bool = false
+var can_rotate: bool = false
+var can_interact: bool = false
 var color_dict = {Color("BLUE"):450,Color("GREEN"):550,Color("RED"):750} # nm
 var child_rays = []
 var can_set_color = false
+@onready var rotation_slider = $InteractPanel/OptionsContainer/RotationSlider
+@onready var return_button = $InteractPanel/OptionsContainer/ReturnButton
+var area_placed_in: PlaceableArea
+
+signal return_to_inventory(grating: Object, area: PlaceableArea)
 
 func _ready():
 	add_to_group("diffractors")
+	$InteractPanel.rotation = -self.rotation
+	rotation_slider.value = self.rotation
+	
+	rotation_slider.drag_started.connect(toggle_rotation)
+	rotation_slider.drag_ended.connect(toggle_rotation)
+	return_button.button_up.connect(return_self_to_inventory)
 
 func _mouse_enter():
-	check_for_drag = true
-	#print("Mouse entered mirror at: "+str(self.position)) #debugging
-
+	toggle_can_interact(self)
+	
 func _mouse_exit():
-	check_for_drag = false
-	#print("Mouse exited mirror at: "+str(self.position)) #debugging
+	toggle_can_interact(self)
+
+func toggle_can_interact(object):
+	object.can_interact = !object.can_interact
+	
+func toggle_rotation(value_changed: bool = true):
+	if(value_changed):
+		can_rotate = true
+	else:
+		can_rotate = false
+	
+func toggle_interact_panel(object):
+	$InteractPanel.visible = !$InteractPanel.visible
+	
+func return_self_to_inventory():
+	return_to_inventory.emit(self,area_placed_in)
+	pass
 
 func _unhandled_input(event):
-	if(check_for_drag and event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT):
-		#print("Registered LMB in mirror at: "+str(self.position)) #debugging
-		if(event.pressed):
-			can_move = true
-		if(!event.pressed):
-			can_move = false
+	if(event is InputEventMouseButton and event.button_index==MOUSE_BUTTON_LEFT and can_interact):
+		if(!event.pressed): # If the event is button released, don't do anything
+			return
+		else:
+			toggle_interact_panel(self)
 
-func _process(delta):
-	if(draggable and can_move):
-		self.global_position = get_global_mouse_position()
+func _physics_process(delta):
+	if(can_rotate):
+		self.rotation = rotation_slider.value
+		$InteractPanel.rotation = -rotation_slider.value
 
 func solve_grating_equation(in_angle,color):
 	### Need to put [if(color==white): solve all 3 wavelengths] somewhere
