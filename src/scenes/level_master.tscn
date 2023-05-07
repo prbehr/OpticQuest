@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/scripts/level_master.gd" id="1_0k3kr"]
 [ext_resource type="Resource" uid="uid://iv1kcuejkfem" path="res://src/Inventory/test_inventory.tres" id="2_2qlio"]
-[ext_resource type="PackedScene" uid="uid://cvao17j2wy75" path="res://src/scenes/GUI.tscn" id="2_blya5"]
+[ext_resource type="PackedScene" uid="uid://b86ewryasktcc" path="res://src/scenes/GUI.tscn" id="2_blya5"]
 
 [sub_resource type="Animation" id="Animation_ne5er"]
 length = 0.001
@@ -85,7 +85,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abprj"]
 size = Vector2(220, 671)
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=["walls"]]
 script = ExtResource("1_0k3kr")
 inventory_data = ExtResource("2_2qlio")
 
@@ -104,7 +104,7 @@ libraries = {
 "": SubResource("AnimationLibrary_e170j")
 }
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["walls"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(100, 325.5)

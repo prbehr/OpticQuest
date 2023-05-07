@@ -1,18 +1,7 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=7 format=3 uid="uid://iv1kcuejkfem"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=2 format=3 uid="uid://iv1kcuejkfem"]
 
 [ext_resource type="Script" path="res://src/Inventory/inventory_data.gd" id="1_4o2fy"]
-[ext_resource type="Resource" uid="uid://cjt0vplo1dcxi" path="res://src/Item/mirror.tres" id="2_vmf4t"]
-[ext_resource type="Script" path="res://src/Inventory/slot_data.gd" id="3_t24p7"]
-[ext_resource type="Resource" uid="uid://beqbi1vr3i5ye" path="res://src/Item/grating.tres" id="4_o7bfg"]
-
-[sub_resource type="Resource" id="Resource_f85vn"]
-script = ExtResource("3_t24p7")
-item_data = ExtResource("2_vmf4t")
-
-[sub_resource type="Resource" id="Resource_enref"]
-script = ExtResource("3_t24p7")
-item_data = ExtResource("4_o7bfg")
 
 [resource]
 script = ExtResource("1_4o2fy")
-slot_data_array = Array[ExtResource("3_t24p7")]([SubResource("Resource_f85vn"), SubResource("Resource_enref")])
+slot_data_array = Array[Resource("res://src/Inventory/slot_data.gd")]([])

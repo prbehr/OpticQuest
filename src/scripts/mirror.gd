@@ -1,12 +1,10 @@
 extends Area2D
 
 @export var ray_scene: PackedScene = load("res://src/scenes/reflected_ray.tscn")
-@export var draggable: bool = true # Set to false if mirror CANNOT be dragged
-@export var can_move: bool = false
-@export var can_rotate: bool = false
-@export var can_interact: bool = false
-@export var can_set_color: bool = false
-@export var color_to_set: Color
+var can_rotate: bool = false
+var rotation_locked: bool = false ## This inherits from the placeable area. If true, cannot ever rotate
+var can_interact: bool = false
+@onready var interact_panel = $InteractPanel
 @onready var rotation_slider = $InteractPanel/OptionsContainer/RotationSlider
 @onready var return_button = $InteractPanel/OptionsContainer/ReturnButton
 var area_placed_in: PlaceableArea
@@ -17,6 +15,10 @@ func _ready():
 	add_to_group("reflectors")
 	$InteractPanel.rotation = -self.rotation
 	rotation_slider.value = self.rotation
+	
+	if(rotation_locked):
+		rotation_slider.value = 0
+		rotation_slider.editable = false
 	
 	rotation_slider.drag_started.connect(toggle_rotation)
 	rotation_slider.drag_ended.connect(toggle_rotation)
@@ -40,8 +42,20 @@ func toggle_rotation(value_changed: bool = true):
 		can_rotate = false
 	
 func toggle_interact_panel(object):
-	$InteractPanel.visible = !$InteractPanel.visible
+	interact_panel.visible = !interact_panel.visible
 	
+	if(interact_panel.visible):
+		var viewport_bottom_corner = get_viewport_rect().end
+		var global_pos = interact_panel.global_position
+		var IP_bottom_corner = interact_panel.global_position+Vector2(interact_panel.size[0],interact_panel.size[1])
+		
+		if(IP_bottom_corner[0] > viewport_bottom_corner[0]):
+			var x_diff = abs(IP_bottom_corner[0] - viewport_bottom_corner[0])
+			interact_panel.global_position = global_pos - Vector2(x_diff,0)
+		if(IP_bottom_corner[1] > viewport_bottom_corner[1]):
+			var y_diff = abs(IP_bottom_corner[1] - viewport_bottom_corner[1])
+			interact_panel.global_position = global_pos - Vector2(0,y_diff)
+
 func return_self_to_inventory():
 	return_to_inventory.emit(self,area_placed_in)
 	pass
@@ -54,10 +68,8 @@ func _unhandled_input(event):
 			toggle_interact_panel(self)
 
 func _physics_process(delta):
-	if(can_rotate):
+	var IP_global_pos = interact_panel.global_position
+	if(can_rotate and !rotation_locked):
 		self.rotation = rotation_slider.value
-		$InteractPanel.rotation = -rotation_slider.value
-		
-func set_line_color(line: Line2D):
-	if(can_set_color):
-		line.set_default_color(color_to_set)
+		interact_panel.rotation = -rotation_slider.value
+		interact_panel.global_position = IP_global_pos

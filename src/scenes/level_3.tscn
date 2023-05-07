@@ -1,63 +1,69 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1nqi8virnbcm"]
+[gd_scene load_steps=13 format=3 uid="uid://dptt84wuwy58"]
 
 [ext_resource type="PackedScene" uid="uid://brjmydti4sblm" path="res://src/scenes/level_master.tscn" id="1_blgrf"]
 [ext_resource type="Script" path="res://src/Inventory/inventory_data.gd" id="2_blw4k"]
 [ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="2_ttyid"]
-[ext_resource type="PackedScene" uid="uid://bco0681qlcxdl" path="res://src/scenes/diffraction_grating.tscn" id="3_bq7xk"]
 [ext_resource type="Resource" uid="uid://cjt0vplo1dcxi" path="res://src/Item/mirror.tres" id="3_uj7tr"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="4_jywbg"]
 [ext_resource type="Script" path="res://src/Inventory/slot_data.gd" id="4_mhn8q"]
 [ext_resource type="Resource" uid="uid://beqbi1vr3i5ye" path="res://src/Item/grating.tres" id="5_2t7tt"]
+[ext_resource type="PackedScene" uid="uid://cgj7b5schs5bv" path="res://src/scenes/pop_up_label.tscn" id="5_hew61"]
+[ext_resource type="PackedScene" uid="uid://drbmdiw3ldexu" path="res://src/scenes/placeable_area.tscn" id="7_qugyb"]
 
-[sub_resource type="Resource" id="Resource_37810"]
-script = ExtResource("4_mhn8q")
-item_data = ExtResource("3_uj7tr")
-
-[sub_resource type="Resource" id="Resource_u74jf"]
-script = ExtResource("4_mhn8q")
-item_data = ExtResource("3_uj7tr")
-
-[sub_resource type="Resource" id="Resource_2our2"]
+[sub_resource type="Resource" id="Resource_p48to"]
 script = ExtResource("4_mhn8q")
 item_data = ExtResource("5_2t7tt")
 
-[sub_resource type="Resource" id="Resource_dyh6g"]
+[sub_resource type="Resource" id="Resource_8ycgu"]
 script = ExtResource("4_mhn8q")
-item_data = ExtResource("5_2t7tt")
+item_data = ExtResource("3_uj7tr")
 
-[sub_resource type="Resource" id="Resource_iswkj"]
+[sub_resource type="Resource" id="Resource_p47qj"]
 script = ExtResource("2_blw4k")
-slot_data_array = Array[ExtResource("4_mhn8q")]([SubResource("Resource_37810"), SubResource("Resource_u74jf"), SubResource("Resource_2our2"), SubResource("Resource_dyh6g")])
+slot_data_array = Array[ExtResource("4_mhn8q")]([SubResource("Resource_p48to"), SubResource("Resource_8ycgu")])
 
 [node name="Node2D" type="Node2D"]
 
 [node name="LevelMaster" parent="." instance=ExtResource("1_blgrf")]
-inventory_data = SubResource("Resource_iswkj")
-
-[node name="BlueDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
-position = Vector2(274, 42)
-rotation = 0.785398
-accepted_color = Color(0, 0, 1, 1)
+position = Vector2(0, -1)
+inventory_data = SubResource("Resource_p47qj")
 
 [node name="GreenDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
-position = Vector2(428, 35)
-rotation = 0.785398
+position = Vector2(1071, 143)
 accepted_color = Color(0, 1, 0, 1)
+exact_colors = true
 
-[node name="RedDetector" parent="LevelMaster" instance=ExtResource("4_jywbg")]
-position = Vector2(625, 41)
-rotation = 0.785398
-accepted_color = Color(1, 0, 0, 1)
+[node name="PlaceableArea" parent="LevelMaster" instance=ExtResource("7_qugyb")]
+offset_left = 910.0
+offset_top = 588.0
+offset_right = 910.0
+offset_bottom = 588.0
 
-[node name="StandardRay" parent="." instance=ExtResource("2_ttyid")]
-position = Vector2(230, 578)
+[node name="PlaceableArea2" parent="LevelMaster" instance=ExtResource("7_qugyb")]
+offset_left = 287.0
+offset_top = 133.0
+offset_right = 287.0
+offset_bottom = 133.0
+rotation_locked = true
+locked_rotation_value = 19.5
 
-[node name="DiffractionGrating" parent="." instance=ExtResource("3_bq7xk")]
-position = Vector2(587, 493)
-rotation = 0.0872665
+[node name="RayCast2D" parent="." instance=ExtResource("2_ttyid")]
+position = Vector2(212, 587)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 789.0
-offset_right = 1152.0
-offset_bottom = 26.0
-text = "GOAL: DIFFRACT A RAY INTO EACH DETECTOR"
+[node name="DiffractionGratingPopUp" parent="." instance=ExtResource("5_hew61")]
+offset_left = 224.0
+offset_top = 426.0
+offset_right = 424.0
+offset_bottom = 539.0
+pop_up_text = "Now you have a diffraction grating in your inventory!
+
+A diffraction grating splits white light into its different wavelengths.
+
+Try using the diffraction grating to split the white light into red, green, and blue."
+
+[node name="GoalLabel" type="Label" parent="."]
+offset_left = 216.0
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 27.0
+text = "GOAL: Reflect ONLY a GREEN ray into the detector"

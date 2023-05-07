@@ -2,21 +2,22 @@
 
 [ext_resource type="Script" path="res://src/scripts/placeable_area.gd" id="1_vuctj"]
 
-[node name="PlaceableArea" type="Control" groups=["placeable areas"]]
+[node name="Control" type="Control" groups=["placeable areas"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+script = ExtResource("1_vuctj")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
-script = ExtResource("1_vuctj")
+pivot_offset = Vector2(20, 20)
+auto_translate = false
 
-[connection signal="gui_input" from="PanelContainer" to="PanelContainer" method="_on_gui_input"]
+[connection signal="gui_input" from="PanelContainer" to="." method="_on_panel_container_gui_input"]

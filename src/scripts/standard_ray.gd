@@ -1,6 +1,7 @@
 extends RayCast2D
 
 @export var ray_scene: PackedScene = load("res://src/scenes/reflected_ray.tscn")
+@export var color: Color = Color(1,1,1,1)
 var is_reflected = false # bool to control whether or not to make a new reflected ray
 var is_diffracted = false # bool to control whether or not to make a new diffracted ray
 var update_diffraction_directions = true 
@@ -12,6 +13,7 @@ var diffraction_directions = {Color("BLUE"):1.0,Color("GREEN"):1.0,Color("RED"):
 func _ready():
 	collide_with_areas = true # Mirrors are Area2D nodes
 	print("I'm here at position: "+str(self.position)) # Debugging
+	$Line2D.set_default_color(color)
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,7 +31,8 @@ func update_line_pos():
 		var collision_point = self.get_collision_point()
 		$Line2D.set_point_position(1,to_local(collision_point))
 		var collider_obj = self.get_collider()
-		
+		if(!collider_obj): # if collider_obj is null skip
+			return
 		if(collider_obj.is_in_group("reflectors")):
 			var ref_direction = Vector2(self.target_position.normalized()).bounce(self.get_collision_normal())
 			if(is_reflected==false):
@@ -50,7 +53,7 @@ func update_line_pos():
 			# This should be the direction we rotate
 			for temp_color in diffraction_directions:
 				var out_angle = collider_obj.solve_grating_equation(in_angle,temp_color)
-				diffraction_directions[temp_color] = i_hat.rotated((angle_to_normal+out_angle)*angle_to_normal/abs(angle_to_normal))
+				diffraction_directions[temp_color] = i_hat.rotated((angle_to_normal+out_angle)).normalized()
 			if(is_diffracted==false):
 				is_diffracted=true
 				for temp_color in diffraction_directions:
@@ -69,8 +72,24 @@ func update_line_pos():
 				has_hit_detector = true
 				# When ray hits detector, add it to the detector's array of lines
 				current_detector.add_to_detector_array($Line2D)
+		elif(collider_obj.is_in_group("walls")):
+			# Set all the reflected properties to false and reset detectors 
+			# BUT set the line position to the wall collision point
+			is_reflected = false
+			is_diffracted = false
+			if(has_hit_detector == true):
+				# If not colliding with anything, remove from current detector array
+				current_detector.remove_from_detector_array($Line2D)
+				has_hit_detector = false
 	else:
-		# If it's not colliding then it can't be reflecting or diffracting
+		set_not_reflecting()
+		
+	if(is_reflected == false and self.get_child_count() > 1):
+		# If a ray is not reflecting but has a reflection child, delete it
+		free_children()
+		
+func set_not_reflecting():
+	# If it's not colliding then it can't be reflecting or diffracting
 		is_reflected = false
 		is_diffracted = false
 		if(has_hit_detector == true):
@@ -80,10 +99,6 @@ func update_line_pos():
 		# If not colliding with anything, update line position to raycast position
 		$Line2D.set_point_position(1,self.target_position)
 		
-	if(is_reflected == false and self.get_child_count() > 1):
-		# If a ray is not reflecting but has a reflection child, delete it
-		free_children()
-		
 func create_reflection(new_position,direction: Vector2,line_color: Color = get_child(0).get_default_color()):
 	print("Instantiating a reflection")
 	var reflection_instance = ray_scene.instantiate()
@@ -92,8 +107,6 @@ func create_reflection(new_position,direction: Vector2,line_color: Color = get_c
 	add_child(reflection_instance)
 	reflection_instance.target_position = direction
 	reflection_instance.get_node("Line2D").set_default_color(line_color)
-	if(self.get_collider().can_set_color):
-		self.get_collider().set_line_color(reflection_instance.get_node("Line2D"))
 
 func set_reflection_direction(child_ind,new_position,direction: Vector2):
 	var reflection = get_child(child_ind)

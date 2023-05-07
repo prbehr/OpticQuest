@@ -7,6 +7,12 @@
 [resource]
 script = ExtResource("1_paoqn")
 name = "Diffraction Grating"
-description = "Diffracts light!"
+description = "Diffraction Grating"
+reflectivity = "Reflectivity
+Red: 100%
+Green: 100%
+Blue: 100%"
+order = "Order: 1"
+groove_density = "Groove density: 1000 mm^-1"
 texture = ExtResource("2_egsac")
 item_scene = ExtResource("1_s7n0a")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c04yfvm5k27bw"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://src/scenes/mirror.tscn" id="2_swr0k"]
-[ext_resource type="PackedScene" uid="uid://4gjh5yptb23j" path="res://src/scenes/level_master.tscn" id="3_r2gmi"]
+[ext_resource type="PackedScene" uid="uid://brjmydti4sblm" path="res://src/scenes/level_master.tscn" id="3_r2gmi"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="3_ynfah"]
-[ext_resource type="PackedScene" uid="uid://bfup6udyn4k00" path="res://src/scenes/level_2.tscn" id="4_7eavu"]
+[ext_resource type="PackedScene" uid="uid://dchlwmmscgw36" path="res://src/scenes/level_2.tscn" id="4_7eavu"]
 [ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="5_bwalp"]
 
 [node name="Node2D" type="Node2D"]

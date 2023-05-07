@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvao17j2wy75"]
+[gd_scene load_steps=5 format=3 uid="uid://b86ewryasktcc"]
 
 [ext_resource type="Texture2D" uid="uid://b1p8g10tvupue" path="res://src/Textures/ray_texture.png" id="1_nx2k7"]
 [ext_resource type="PackedScene" uid="uid://c5c65s82w6dok" path="res://src/scenes/description_label.tscn" id="1_ygpf5"]
@@ -28,17 +28,7 @@ grow_vertical = 2
 scale = Vector2(1, 1.00464)
 size_flags_vertical = 3
 
-[node name="Control" parent="NinePatchRect/VBoxContainer" instance=ExtResource("1_ygpf5")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Control2" parent="NinePatchRect/VBoxContainer" instance=ExtResource("1_ygpf5")]
-custom_minimum_size = Vector2(0, 0)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Control3" parent="NinePatchRect/VBoxContainer" instance=ExtResource("1_ygpf5")]
+[node name="DescriptionLabel" parent="NinePatchRect/VBoxContainer" instance=ExtResource("1_ygpf5")]
 custom_minimum_size = Vector2(0, 0)
 layout_mode = 2
 size_flags_vertical = 3

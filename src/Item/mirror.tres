@@ -7,6 +7,13 @@
 [resource]
 script = ExtResource("1_0nc08")
 name = "Mirror"
-description = "Reflects light!"
+description = "Mirror"
+reflectivity = "Reflectivity
+Red: 100%
+Green: 100%
+Blue: 100%"
+order = ""
+groove_density = ""
+can_rotate = false
 texture = ExtResource("2_515lq")
 item_scene = ExtResource("1_nja2r")

@@ -1,18 +1,61 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnwaf04aek3m5"]
+[gd_scene load_steps=12 format=3 uid="uid://cmqkrpx6k7858"]
 
-[ext_resource type="PackedScene" uid="uid://5dt5c6wv23d7" path="res://src/scenes/player_ray.tscn" id="1_fhubi"]
+[ext_resource type="PackedScene" uid="uid://brjmydti4sblm" path="res://src/scenes/level_master.tscn" id="1_x688j"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="2_3pnsn"]
-[ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://src/scenes/mirror.tscn" id="3_65jid"]
+[ext_resource type="PackedScene" uid="uid://bls3sdprk5yh8" path="res://src/scenes/level_2.tscn" id="2_boivj"]
+[ext_resource type="Script" path="res://src/Inventory/inventory_data.gd" id="3_myr2h"]
+[ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="3_s3qtg"]
+[ext_resource type="PackedScene" uid="uid://drbmdiw3ldexu" path="res://src/scenes/placeable_area.tscn" id="4_inbr1"]
+[ext_resource type="Resource" uid="uid://cjt0vplo1dcxi" path="res://src/Item/mirror.tres" id="4_ups5c"]
+[ext_resource type="Script" path="res://src/Inventory/slot_data.gd" id="5_qe1lj"]
+[ext_resource type="PackedScene" uid="uid://cgj7b5schs5bv" path="res://src/scenes/pop_up_label.tscn" id="6_66l7o"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Resource" id="Resource_n3518"]
+script = ExtResource("5_qe1lj")
+item_data = ExtResource("4_ups5c")
 
-[node name="RayCast2D" parent="." instance=ExtResource("1_fhubi")]
-position = Vector2(-33, 573)
+[sub_resource type="Resource" id="Resource_n3jou"]
+script = ExtResource("3_myr2h")
+slot_data_array = Array[ExtResource("5_qe1lj")]([SubResource("Resource_n3518")])
 
-[node name="mirror" parent="." instance=ExtResource("3_65jid")]
-position = Vector2(501, 407)
-rotation = 0.785398
+[node name="LevelMaster" instance=ExtResource("1_x688j")]
+next_scene = ExtResource("2_boivj")
+inventory_data = SubResource("Resource_n3jou")
 
-[node name="detector" parent="." instance=ExtResource("2_3pnsn")]
-position = Vector2(576, 77)
+[node name="Detector" parent="." index="3" instance=ExtResource("2_3pnsn")]
+position = Vector2(671, 51)
 rotation = 1.5708
+
+[node name="RayCast2D" parent="." index="4" instance=ExtResource("3_s3qtg")]
+position = Vector2(220, 597)
+
+[node name="GoalLabel" type="Label" parent="." index="5"]
+offset_left = 228.0
+offset_top = 7.0
+offset_right = 268.0
+offset_bottom = 30.0
+text = "GOAL: Reflect a WHITE ray into the detector"
+
+[node name="PlaceableArea" parent="." index="6" instance=ExtResource("4_inbr1")]
+offset_left = 702.0
+offset_top = 593.0
+offset_right = 702.0
+offset_bottom = 593.0
+
+[node name="InventoryPopUp" parent="." index="7" instance=ExtResource("6_66l7o")]
+offset_left = 216.0
+offset_top = 485.0
+offset_right = 516.0
+offset_bottom = 546.0
+pop_up_text = "This is your inventory! Click on items to pick them up and place them in empty slots.
+
+Once an item has been dropped you can click it again for more options."
+
+[node name="PlaceableAreaPopUp" parent="." index="8" instance=ExtResource("6_66l7o")]
+offset_left = 741.0
+offset_top = 493.0
+offset_right = 1041.0
+offset_bottom = 554.0
+pop_up_text = "This is a placeable area. You can drop optics from your inventory here! 
+
+Try placing the mirror in your inventory here."

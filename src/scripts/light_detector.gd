@@ -2,11 +2,14 @@ extends Area2D
 
 @export var accepted_color: Color = "white"
 @export var rays_required: int = 1
+@export var exact_colors: bool = false # if exact_colors, the level will not progress if ANY non-accepted colors are hitting
 var receiving_light: bool = false
 var status_has_changed: bool = true
 var current_rays = []
 # Maintain a list of current rays and whether or not the array has changed since last frame
 # If it has changed, update the status and check
+
+signal check_detector_status
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,10 +32,12 @@ func update_status():
 			continue
 		if(ray.get_default_color() == accepted_color):
 			num_rays += 1
+		if(exact_colors and ray.get_default_color() != accepted_color):
+			num_rays -= 1
 		if(num_rays >= rays_required):
 			print("Minimum number of rays achieved")
 			receiving_light = true
-			self.get_parent().check_detector_status()
+			check_detector_status.emit()
 		else:
 			receiving_light = false
 	status_has_changed = false

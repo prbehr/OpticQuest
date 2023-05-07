@@ -9,6 +9,7 @@ size = Vector2(20, 63)
 [sub_resource type="CanvasTexture" id="CanvasTexture_asmbx"]
 
 [node name="Area2D" type="Area2D"]
+rotation = 0.0174533
 script = ExtResource("1_quunf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -20,3 +21,5 @@ texture = SubResource("CanvasTexture_asmbx")
 
 [node name="InteractPanel" parent="." instance=ExtResource("2_amcj7")]
 visible = false
+offset_right = 192.0
+offset_bottom = 81.0

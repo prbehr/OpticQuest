@@ -1,16 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfup6udyn4k00"]
+[gd_scene load_steps=13 format=3 uid="uid://bls3sdprk5yh8"]
 
 [ext_resource type="PackedScene" uid="uid://brjmydti4sblm" path="res://src/scenes/level_master.tscn" id="1_pj8tq"]
-[ext_resource type="PackedScene" uid="uid://d1nqi8virnbcm" path="res://src/scenes/level_3.tscn" id="2_gbm13"]
-[ext_resource type="PackedScene" uid="uid://cnwwehp5cfbw6" path="res://src/scenes/mirror.tscn" id="2_o4240"]
+[ext_resource type="PackedScene" uid="uid://dptt84wuwy58" path="res://src/scenes/level_3.tscn" id="2_gbm13"]
 [ext_resource type="Script" path="res://src/Inventory/inventory_data.gd" id="3_683nf"]
 [ext_resource type="PackedScene" uid="uid://qgw8i6orvg0t" path="res://src/scenes/light_detector.tscn" id="3_fujd8"]
 [ext_resource type="Resource" uid="uid://cjt0vplo1dcxi" path="res://src/Item/mirror.tres" id="4_l4el7"]
 [ext_resource type="PackedScene" uid="uid://cifu4ciypcyac" path="res://src/scenes/standard_ray.tscn" id="5_cpq0e"]
 [ext_resource type="Script" path="res://src/Inventory/slot_data.gd" id="5_r1y5h"]
-[ext_resource type="Resource" uid="uid://beqbi1vr3i5ye" path="res://src/Item/grating.tres" id="6_15bnb"]
-[ext_resource type="PackedScene" uid="uid://i2ittawasfm5" path="res://src/scenes/reflected_ray.tscn" id="6_qsna5"]
 [ext_resource type="PackedScene" uid="uid://drbmdiw3ldexu" path="res://src/scenes/placeable_area.tscn" id="11_6rvkk"]
+[ext_resource type="PackedScene" uid="uid://cgj7b5schs5bv" path="res://src/scenes/pop_up_label.tscn" id="12_c5yhs"]
 
 [sub_resource type="Resource" id="Resource_5xqvt"]
 script = ExtResource("5_r1y5h")
@@ -18,11 +16,11 @@ item_data = ExtResource("4_l4el7")
 
 [sub_resource type="Resource" id="Resource_wh0n0"]
 script = ExtResource("5_r1y5h")
-item_data = ExtResource("6_15bnb")
+item_data = ExtResource("4_l4el7")
 
 [sub_resource type="Resource" id="Resource_hawkb"]
 script = ExtResource("3_683nf")
-slot_data_array = Array[ExtResource("5_r1y5h")]([SubResource("Resource_5xqvt"), SubResource("Resource_wh0n0"), null])
+slot_data_array = Array[ExtResource("5_r1y5h")]([SubResource("Resource_5xqvt"), SubResource("Resource_wh0n0")])
 
 [node name="Node2D" type="Node2D"]
 
@@ -30,40 +28,38 @@ slot_data_array = Array[ExtResource("5_r1y5h")]([SubResource("Resource_5xqvt"), 
 next_scene = ExtResource("2_gbm13")
 inventory_data = SubResource("Resource_hawkb")
 
-[node name="RedDetector" parent="LevelMaster" instance=ExtResource("3_fujd8")]
+[node name="WhiteDetector" parent="LevelMaster" instance=ExtResource("3_fujd8")]
 position = Vector2(242, 195)
-accepted_color = Color(1, 0, 0, 1)
-rays_required = 2
+exact_colors = true
 
 [node name="PlaceableArea1" parent="LevelMaster" instance=ExtResource("11_6rvkk")]
-offset_left = 897.0
-offset_top = 293.0
-offset_right = 897.0
-offset_bottom = 293.0
+offset_left = 705.0
+offset_top = 174.0
+offset_right = 705.0
+offset_bottom = 174.0
 
-[node name="Mirror1" parent="." instance=ExtResource("2_o4240")]
-position = Vector2(710, 447)
-rotation = 0.785398
+[node name="PlaceableArea2" parent="LevelMaster" instance=ExtResource("11_6rvkk")]
+offset_left = 705.0
+offset_top = 457.0
+offset_right = 705.0
+offset_bottom = 457.0
+rotation_locked = true
+locked_rotation_value = 45.0
 
-[node name="Mirror2" parent="." instance=ExtResource("2_o4240")]
-position = Vector2(443, 185)
-rotation = -0.785398
-draggable = false
-can_set_color = true
-color_to_set = Color(1, 0, 0, 1)
-
-[node name="Label" type="Label" parent="."]
+[node name="GoalLabel" type="Label" parent="."]
 offset_left = 217.0
 offset_top = 6.0
 offset_right = 580.0
 offset_bottom = 32.0
-text = "GOAL: REFLECT TWO RAYS INTO THE DETECTOR"
+text = "GOAL: Reflect a WHITE ray into the detector"
 
-[node name="StandardRay1" parent="." instance=ExtResource("5_cpq0e")]
-modulate = Color(5, 5, 5, 1)
-position = Vector2(224, 430)
-ray_scene = ExtResource("6_qsna5")
-
-[node name="StandardRay2" parent="." instance=ExtResource("5_cpq0e")]
-modulate = Color(5, 5, 5, 1)
+[node name="WhiteRay" parent="." instance=ExtResource("5_cpq0e")]
+modulate = Color(8.02745, 1, 1, 1)
 position = Vector2(225, 457)
+
+[node name="PopUp" parent="." instance=ExtResource("12_c5yhs")]
+offset_left = 716.0
+offset_top = 480.0
+offset_right = 916.0
+offset_bottom = 593.0
+pop_up_text = "Optics in blue areas are free to rotate while optics in red areas are locked in position"
